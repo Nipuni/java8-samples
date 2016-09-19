@@ -2,10 +2,11 @@ package org.my.java8.samples.chapter04.streams;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * User: Nipuni Perera
- * This example will demonstrates the usage of matching methods in Streams API.
+ * This example will demonstrates the usage of few matching and Finding methods in Streams API.
  */
 public class StreamWithMatchDemo {
 
@@ -20,6 +21,8 @@ public class StreamWithMatchDemo {
         );
         anyMatch(booksCatalogue);
         nonMatch(booksCatalogue);
+        allMatch(booksCatalogue);
+        findAny(booksCatalogue);
     }
 
     public static void anyMatch( List<Book> booksCatalogue) {
@@ -34,5 +37,22 @@ public class StreamWithMatchDemo {
                 .noneMatch(book -> book.getBookType() == Book.Type.DICTIONARY)) {
             System.out.println("The Catalogue does not has any books with type Dictionary");
         }
+    }
+
+    public static void allMatch( List<Book> booksCatalogue) {
+        if(booksCatalogue.stream()
+                .noneMatch(book -> book.getBookType() == Book.Type.NOVEL)) {
+            System.out.println("All books of Catalogue are novels");
+        } else {
+            System.out.println("The catalogue has books in different types");
+        }
+    }
+
+    public static void findAny( List<Book> booksCatalogue) {
+        booksCatalogue.stream()
+                .filter(book -> book.getNoOfAuthors() == 3)
+                .findAny()
+                .ifPresent(book -> System.out.println(book.getBookTitle()));
+
     }
 }
