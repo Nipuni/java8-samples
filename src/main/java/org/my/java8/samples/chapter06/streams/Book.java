@@ -49,6 +49,12 @@ public class Book {
         this.isRecommendedForChildren = isRecommendedForChildren;
     }
 
+    public String toString() {
+        return this.bookTitle+" ";
+    }
+
+
+
     public static enum  Type {
          NOVEL, TRAVEL_GUIDE, MATH, HISTORY, DICTIONARY
     }
